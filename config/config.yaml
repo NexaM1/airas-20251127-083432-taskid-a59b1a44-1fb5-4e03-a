@@ -1,12 +1,13 @@
 # -----------------------------------------------------------------------------
-# Root Hydra configuration (shared by all runs)                                
+# Root Hydra configuration (shared by all runs)
 # -----------------------------------------------------------------------------
 
 defaults:
   - _self_
-  - run: ???                 # individual experiment lives in config/run/<id>.yaml
 
 # -----------------------------------------------------------------------------
+run: null                    # individual experiment run ID (set via CLI)
+run_id: ${run}               # backward compatibility
 results_dir: "results"
 mode: full                   # trial / full
 

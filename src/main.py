@@ -8,7 +8,11 @@ import hydra
 
 @hydra.main(config_path="../config", config_name="config")
 def main(cfg):
-    run_id = cfg.run.run_id if "run" in cfg and cfg.run is not None else cfg.run_id
+    # Handle both new format (run as string) and legacy format (run.run_id)
+    if "run" in cfg and cfg.run is not None:
+        run_id = cfg.run if isinstance(cfg.run, str) else cfg.run.run_id
+    else:
+        run_id = cfg.run_id
 
     # Build CLI overrides --------------------------------------------------
     overrides = [

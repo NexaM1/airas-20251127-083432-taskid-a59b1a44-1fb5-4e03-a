@@ -32,7 +32,9 @@ from src.model import (
 def _flatten_cfg(cfg):
     """Merge cfg.run.* into the root so that all accesses become flat."""
     if "run" in cfg and cfg.run is not None:
-        cfg = OmegaConf.merge(cfg, cfg.run)
+        # Handle both new format (run as string) and legacy format (run as DictConfig)
+        if not isinstance(cfg.run, str):
+            cfg = OmegaConf.merge(cfg, cfg.run)
     return cfg
 
 
