@@ -4,6 +4,7 @@ run is isolated while adhering to the CLI required by the specification."""
 import sys
 import subprocess
 import hydra
+import os
 
 
 @hydra.main(config_path="../config", config_name="config")
@@ -32,7 +33,11 @@ def main(cfg):
     else:
         raise ValueError("mode must be 'trial' or 'full'")
 
-    cmd = [sys.executable, "-u", "-m", "src.train", *overrides]
+    # Get the directory containing this script
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    train_script = os.path.join(script_dir, "train.py")
+
+    cmd = [sys.executable, "-u", train_script, *overrides]
     print("EXEC:", " ".join(cmd))
     subprocess.run(cmd, check=True)
 

@@ -16,8 +16,8 @@ import torch.backends.cudnn as cudnn
 import wandb
 import optuna
 
-from src.preprocess import build_dataloaders
-from src.model import (
+from preprocess import build_dataloaders
+from model import (
     HiCESUNet,
     BaselineUNet,
     diffusion_loss_fn,
