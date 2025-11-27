@@ -561,6 +561,51 @@
             "lambda_H": "0.01-0.1",
             "tau_max": "0.5-2.0",
             "S_max": "3,4,5"
+          },
+          "external_resources": {
+            "hugging_face": {
+              "models": [],
+              "datasets": [
+                {
+                  "id": "gitpull/Imagenet_64x64",
+                  "author": "gitpull",
+                  "sha": "217af7b2bfd11bfbadce4dc9088377d7fd85fbf9",
+                  "created_at": "2024-12-27T03:28:51+00:00",
+                  "last_modified": "2024-12-27T04:09:00+00:00",
+                  "private": false,
+                  "gated": false,
+                  "disabled": false,
+                  "downloads": 20,
+                  "likes": 0,
+                  "siblings": [
+                    {
+                      "rfilename": ".gitattributes"
+                    },
+                    {
+                      "rfilename": "ImageNet.zip"
+                    },
+                    {
+                      "rfilename": "README.md"
+                    }
+                  ],
+                  "card_data": {
+                    "license": "apache-2.0",
+                    "language": [],
+                    "tags": [],
+                    "datasets": [],
+                    "task_categories": [],
+                    "size_categories": [],
+                    "metrics": [],
+                    "widget": []
+                  },
+                  "tags": [
+                    "license:apache-2.0",
+                    "region:us"
+                  ],
+                  "readme": "---\r\nlicense: apache-2.0\r\n---\r\n"
+                }
+              ]
+            }
           }
         },
         "experiment_runs": [
