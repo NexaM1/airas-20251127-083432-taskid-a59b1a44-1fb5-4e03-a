@@ -43,10 +43,15 @@ class ResidualBlock(nn.Module):
 class Down(nn.Module):
     def __init__(self, ic, oc):
         super().__init__()
-        self.block = nn.Sequential(ResidualBlock(ic, oc), nn.AvgPool2d(2))
+        self.res = ResidualBlock(ic, oc)
+        self.pool = nn.AvgPool2d(2)
 
     def forward(self, x):
-        return self.block(x)
+        x = self.res(x)
+        # Only pool if spatial dimensions are > 1 to avoid 0x0 output
+        if x.shape[2] > 1 and x.shape[3] > 1:
+            x = self.pool(x)
+        return x
 
 
 class Up(nn.Module):
@@ -55,8 +60,14 @@ class Up(nn.Module):
         self.up = nn.Upsample(scale_factor=2, mode="nearest")
         self.block = ResidualBlock(ic, oc)
 
-    def forward(self, x):
-        return self.block(self.up(x))
+    def forward(self, x, target_size=None):
+        # Conditionally upsample based on target size if provided
+        if target_size is not None:
+            if x.shape[2:] != target_size:
+                x = F.interpolate(x, size=target_size, mode="nearest")
+        else:
+            x = self.up(x)
+        return self.block(x)
 
 
 class RiskHead(nn.Module):
@@ -105,12 +116,22 @@ class HiCESUNet(nn.Module):
         x3 = self.d3(x2)
         x4 = self.d4(x3)
         h = self.mid(x4)
-        h = self.u4(h)
-        h = self.u3(h + x3)
-        h = self.u2(h + x2)
+        # Use target sizes from skip connections to guide upsampling
+        h = self.u4(h, target_size=x3.shape[2:])
+        if h.shape[2:] == x3.shape[2:]:
+            h = h + x3
+        h = self.u3(h, target_size=x2.shape[2:])
+        if h.shape[2:] == x2.shape[2:]:
+            h = h + x2
         risk_feats = h
-        h = self.u1(h + x1)
-        out = self.out_conv(h + x0)
+        h = self.u2(h, target_size=x1.shape[2:])
+        if h.shape[2:] == x1.shape[2:]:
+            h = h + x1
+        h = self.u1(h, target_size=x0.shape[2:])
+        if h.shape[2:] == x0.shape[2:]:
+            out = self.out_conv(h + x0)
+        else:
+            out = self.out_conv(h)
         if return_risk:
             risk_map = self.risk_head(risk_feats)
             return out, risk_map
