@@ -388,7 +388,7 @@ def compute_val_metrics(model: HiCESUNet, loader, cfg, device, *, method: str, n
 # ---------------------------------------------------------------------------
 
 def _get_inception(device):
-    m = inception_v3(pretrained=True, aux_logits=False, transform_input=False).to(device)
+    m = inception_v3(pretrained=True, aux_logits=True, transform_input=False).to(device)
     m.fc = nn.Identity()
     m.eval()
     for p in m.parameters():
