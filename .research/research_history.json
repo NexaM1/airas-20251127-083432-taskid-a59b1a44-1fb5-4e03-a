@@ -1,0 +1,10 @@
+{
+  "research_topic": "diffusion modelの速度改善",
+  "queries": [
+    "diffusion model acceleration",
+    "fast diffusion sampling",
+    "diffusion step reduction",
+    "denoising diffusion optimization",
+    "progressive distillation diffusion"
+  ]
+}
