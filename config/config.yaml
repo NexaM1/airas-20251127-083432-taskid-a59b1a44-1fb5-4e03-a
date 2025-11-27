@@ -10,6 +10,7 @@ run: null                    # individual experiment run ID (set via CLI)
 run_id: ${run}               # backward compatibility
 results_dir: "results"
 mode: full                   # trial / full
+method: proposed             # method type: hices, proposed, afder, comparative, baseline, uniform
 
 # -----------------------------------------------------------------------------
 wandb:
