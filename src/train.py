@@ -5,6 +5,9 @@ import logging
 from collections import defaultdict
 from typing import Dict
 
+# Add parent directory to path to allow 'src' imports to work
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 import hydra
 from omegaconf import OmegaConf
 
