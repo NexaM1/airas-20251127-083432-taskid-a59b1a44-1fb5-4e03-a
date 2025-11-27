@@ -9,79 +9,414 @@
   ],
   "research_study_list": [
     {
-      "title": "Faster Diffusion: Rethinking the Role of the Encoder for Diffusion Model Inference"
+      "title": "Faster Diffusion: Rethinking the Role of the Encoder for Diffusion Model Inference",
+      "abstract": "One of the main drawback of diffusion models is the slow inference time for image generation. Among the most successful approaches to addressing this problem are distillation methods. However, these methods require considerable computational resources. In this paper, we take another approach to diffusion model acceleration. We conduct a comprehensive study of the UNet encoder and empirically analyze the encoder features. This provides insights regarding their changes during the inference process. In particular, we find that encoder features change minimally, whereas the decoder features exhibit substantial variations across different time-steps. This insight motivates us to omit encoder computation at certain adjacent time-steps and reuse encoder features of previous time-steps as input to the decoder in multiple time-steps. Importantly, this allows us to perform decoder computation in parallel, further accelerating the denoising process. Additionally, we introduce a prior noise injection method to improve the texture details in the generated image. Besides the standard text-to-image task, we also validate our approach on other tasks: text-to-video, personalized generation and reference-guided generation. Without utilizing any knowledge distillation technique, our approach accelerates both the Stable Diffusion (SD) and DeepFloyd-IF model sampling by 41$\\%$ and 24$\\%$ respectively, and DiT model sampling by 34$\\%$, while maintaining high-quality generation performance.",
+      "meta_data": {
+        "arxiv_id": "2312.09608v2",
+        "authors": [
+          "Senmao Li",
+          "Taihang Hu",
+          "Joost van de Weijer",
+          "Fahad Shahbaz Khan",
+          "Tao Liu",
+          "Linxuan Li",
+          "Shiqi Yang",
+          "Yaxing Wang",
+          "Ming-Ming Cheng",
+          "Jian Yang"
+        ],
+        "published_date": "2023-12-15T08:46:43Z",
+        "pdf_url": "https://arxiv.org/pdf/2312.09608v2.pdf"
+      }
     },
     {
       "title": "Leveraging Early-Stage Robustness in Diffusion Models for Efficient and High-Quality Image Synthesis"
     },
     {
-      "title": "Post-Training Quantization on Diffusion Models"
+      "title": "Post-Training Quantization on Diffusion Models",
+      "abstract": "Denoising diffusion (score-based) generative models have recently achieved significant accomplishments in generating realistic and diverse data. These approaches define a forward diffusion process for transforming data into noise and a backward denoising process for sampling data from noise. Unfortunately, the generation process of current denoising diffusion models is notoriously slow due to the lengthy iterative noise estimations, which rely on cumbersome neural networks. It prevents the diffusion models from being widely deployed, especially on edge devices. Previous works accelerate the generation process of diffusion model (DM) via finding shorter yet effective sampling trajectories. However, they overlook the cost of noise estimation with a heavy network in every iteration. In this work, we accelerate generation from the perspective of compressing the noise estimation network. Due to the difficulty of retraining DMs, we exclude mainstream training-aware compression paradigms and introduce post-training quantization (PTQ) into DM acceleration. However, the output distributions of noise estimation networks change with time-step, making previous PTQ methods fail in DMs since they are designed for single-time step scenarios. To devise a DM-specific PTQ method, we explore PTQ on DM in three aspects: quantized operations, calibration dataset, and calibration metric. We summarize and use several observations derived from all-inclusive investigations to formulate our method, which especially targets the unique multi-time-step structure of DMs. Experimentally, our method can directly quantize full-precision DMs into 8-bit models while maintaining or even improving their performance in a training-free manner. Importantly, our method can serve as a plug-and-play module on other fast-sampling methods, e.g., DDIM. The code is available at https://github.com/42Shawn/PTQ4DM .",
+      "meta_data": {
+        "arxiv_id": "2211.15736v3",
+        "authors": [
+          "Yuzhang Shang",
+          "Zhihang Yuan",
+          "Bin Xie",
+          "Bingzhe Wu",
+          "Yan Yan"
+        ],
+        "published_date": "2022-11-28T19:33:39Z",
+        "pdf_url": "https://arxiv.org/pdf/2211.15736v3.pdf"
+      }
     },
     {
-      "title": "A Simple Early Exiting Framework for Accelerated Sampling in Diffusion Models"
+      "title": "A Simple Early Exiting Framework for Accelerated Sampling in Diffusion Models",
+      "abstract": "Diffusion models have shown remarkable performance in generation problems over various domains including images, videos, text, and audio. A practical bottleneck of diffusion models is their sampling speed, due to the repeated evaluation of score estimation networks during the inference. In this work, we propose a novel framework capable of adaptively allocating compute required for the score estimation, thereby reducing the overall sampling time of diffusion models. We observe that the amount of computation required for the score estimation may vary along the time step for which the score is estimated. Based on this observation, we propose an early-exiting scheme, where we skip the subset of parameters in the score estimation network during the inference, based on a time-dependent exit schedule. Using the diffusion models for image synthesis, we show that our method could significantly improve the sampling throughput of the diffusion models without compromising image quality. Furthermore, we also demonstrate that our method seamlessly integrates with various types of solvers for faster sampling, capitalizing on their compatibility to enhance overall efficiency. The source code and our experiments are available at \\url{https://github.com/taehong-moon/ee-diffusion}",
+      "meta_data": {
+        "arxiv_id": "2408.05927v1",
+        "authors": [
+          "Taehong Moon",
+          "Moonseok Choi",
+          "EungGu Yun",
+          "Jongmin Yoon",
+          "Gayoung Lee",
+          "Jaewoong Cho",
+          "Juho Lee"
+        ],
+        "published_date": "2024-08-12T05:33:45Z",
+        "pdf_url": "https://arxiv.org/pdf/2408.05927v1.pdf"
+      }
     },
     {
-      "title": "Multistep Distillation of Diffusion Models via Moment Matching"
+      "title": "Multistep Distillation of Diffusion Models via Moment Matching",
+      "abstract": "We present a new method for making diffusion models faster to sample. The method distills many-step diffusion models into few-step models by matching conditional expectations of the clean data given noisy data along the sampling trajectory. Our approach extends recently proposed one-step methods to the multi-step case, and provides a new perspective by interpreting these approaches in terms of moment matching. By using up to 8 sampling steps, we obtain distilled models that outperform not only their one-step versions but also their original many-step teacher models, obtaining new state-of-the-art results on the Imagenet dataset. We also show promising results on a large text-to-image model where we achieve fast generation of high resolution images directly in image space, without needing autoencoders or upsamplers.",
+      "meta_data": {
+        "arxiv_id": "2406.04103v1",
+        "authors": [
+          "Tim Salimans",
+          "Thomas Mensink",
+          "Jonathan Heek",
+          "Emiel Hoogeboom"
+        ],
+        "published_date": "2024-06-06T14:20:21Z",
+        "pdf_url": "https://arxiv.org/pdf/2406.04103v1.pdf"
+      }
     },
     {
-      "title": "Multistep Distillation of Diffusion Models via Moment Matching"
+      "title": "Multistep Distillation of Diffusion Models via Moment Matching",
+      "abstract": "We present a new method for making diffusion models faster to sample. The method distills many-step diffusion models into few-step models by matching conditional expectations of the clean data given noisy data along the sampling trajectory. Our approach extends recently proposed one-step methods to the multi-step case, and provides a new perspective by interpreting these approaches in terms of moment matching. By using up to 8 sampling steps, we obtain distilled models that outperform not only their one-step versions but also their original many-step teacher models, obtaining new state-of-the-art results on the Imagenet dataset. We also show promising results on a large text-to-image model where we achieve fast generation of high resolution images directly in image space, without needing autoencoders or upsamplers.",
+      "meta_data": {
+        "arxiv_id": "2406.04103v1",
+        "authors": [
+          "Tim Salimans",
+          "Thomas Mensink",
+          "Jonathan Heek",
+          "Emiel Hoogeboom"
+        ],
+        "published_date": "2024-06-06T14:20:21Z",
+        "pdf_url": "https://arxiv.org/pdf/2406.04103v1.pdf"
+      }
     },
     {
-      "title": "A Simple Early Exiting Framework for Accelerated Sampling in Diffusion Models"
+      "title": "A Simple Early Exiting Framework for Accelerated Sampling in Diffusion Models",
+      "abstract": "Diffusion models have shown remarkable performance in generation problems over various domains including images, videos, text, and audio. A practical bottleneck of diffusion models is their sampling speed, due to the repeated evaluation of score estimation networks during the inference. In this work, we propose a novel framework capable of adaptively allocating compute required for the score estimation, thereby reducing the overall sampling time of diffusion models. We observe that the amount of computation required for the score estimation may vary along the time step for which the score is estimated. Based on this observation, we propose an early-exiting scheme, where we skip the subset of parameters in the score estimation network during the inference, based on a time-dependent exit schedule. Using the diffusion models for image synthesis, we show that our method could significantly improve the sampling throughput of the diffusion models without compromising image quality. Furthermore, we also demonstrate that our method seamlessly integrates with various types of solvers for faster sampling, capitalizing on their compatibility to enhance overall efficiency. The source code and our experiments are available at \\url{https://github.com/taehong-moon/ee-diffusion}",
+      "meta_data": {
+        "arxiv_id": "2408.05927v1",
+        "authors": [
+          "Taehong Moon",
+          "Moonseok Choi",
+          "EungGu Yun",
+          "Jongmin Yoon",
+          "Gayoung Lee",
+          "Jaewoong Cho",
+          "Juho Lee"
+        ],
+        "published_date": "2024-08-12T05:33:45Z",
+        "pdf_url": "https://arxiv.org/pdf/2408.05927v1.pdf"
+      }
     },
     {
-      "title": "Reverse Transition Kernel: A Flexible Framework to Accelerate Diffusion Inference"
+      "title": "Reverse Transition Kernel: A Flexible Framework to Accelerate Diffusion Inference",
+      "abstract": "To generate data from trained diffusion models, most inference algorithms, such as DDPM, DDIM, and other variants, rely on discretizing the reverse SDEs or their equivalent ODEs. In this paper, we view such approaches as decomposing the entire denoising diffusion process into several segments, each corresponding to a reverse transition kernel (RTK) sampling subproblem. Specifically, DDPM uses a Gaussian approximation for the RTK, resulting in low per-subproblem complexity but requiring a large number of segments (i.e., subproblems), which is conjectured to be inefficient. To address this, we develop a general RTK framework that enables a more balanced subproblem decomposition, resulting in $\\tilde O(1)$ subproblems, each with strongly log-concave targets. We then propose leveraging two fast sampling algorithms, the Metropolis-Adjusted Langevin Algorithm (MALA) and Underdamped Langevin Dynamics (ULD), for solving these strongly log-concave subproblems. This gives rise to the RTK-MALA and RTK-ULD algorithms for diffusion inference. In theory, we further develop the convergence guarantees for RTK-MALA and RTK-ULD in total variation (TV) distance: RTK-ULD can achieve $ε$ target error within $\\tilde{\\mathcal O}(d^{1/2}ε^{-1})$ under mild conditions, and RTK-MALA enjoys a $\\mathcal{O}(d^{2}\\log(d/ε))$ convergence rate under slightly stricter conditions. These theoretical results surpass the state-of-the-art convergence rates for diffusion inference and are well supported by numerical experiments.",
+      "meta_data": {
+        "arxiv_id": "2405.16387v1",
+        "authors": [
+          "Xunpeng Huang",
+          "Difan Zou",
+          "Hanze Dong",
+          "Yi Zhang",
+          "Yi-An Ma",
+          "Tong Zhang"
+        ],
+        "published_date": "2024-05-26T00:26:57Z",
+        "pdf_url": "https://arxiv.org/pdf/2405.16387v1.pdf"
+      }
     },
     {
-      "title": "Fast ODE-based Sampling for Diffusion Models in Around 5 Steps"
+      "title": "Fast ODE-based Sampling for Diffusion Models in Around 5 Steps",
+      "abstract": "Sampling from diffusion models can be treated as solving the corresponding ordinary differential equations (ODEs), with the aim of obtaining an accurate solution with as few number of function evaluations (NFE) as possible. Recently, various fast samplers utilizing higher-order ODE solvers have emerged and achieved better performance than the initial first-order one. However, these numerical methods inherently result in certain approximation errors, which significantly degrades sample quality with extremely small NFE (e.g., around 5). In contrast, based on the geometric observation that each sampling trajectory almost lies in a two-dimensional subspace embedded in the ambient space, we propose Approximate MEan-Direction Solver (AMED-Solver) that eliminates truncation errors by directly learning the mean direction for fast diffusion sampling. Besides, our method can be easily used as a plugin to further improve existing ODE-based samplers. Extensive experiments on image synthesis with the resolution ranging from 32 to 512 demonstrate the effectiveness of our method. With only 5 NFE, we achieve 6.61 FID on CIFAR-10, 10.74 FID on ImageNet 64$\\times$64, and 13.20 FID on LSUN Bedroom. Our code is available at https://github.com/zju-pi/diff-sampler.",
+      "meta_data": {
+        "arxiv_id": "2312.00094v3",
+        "authors": [
+          "Zhenyu Zhou",
+          "Defang Chen",
+          "Can Wang",
+          "Chun Chen"
+        ],
+        "published_date": "2023-11-30T13:07:19Z",
+        "pdf_url": "https://arxiv.org/pdf/2312.00094v3.pdf"
+      }
     },
     {
-      "title": "Semi-Implicit Denoising Diffusion Models (SIDDMs)"
+      "title": "Semi-Implicit Denoising Diffusion Models (SIDDMs)",
+      "abstract": "Despite the proliferation of generative models, achieving fast sampling during inference without compromising sample diversity and quality remains challenging. Existing models such as Denoising Diffusion Probabilistic Models (DDPM) deliver high-quality, diverse samples but are slowed by an inherently high number of iterative steps. The Denoising Diffusion Generative Adversarial Networks (DDGAN) attempted to circumvent this limitation by integrating a GAN model for larger jumps in the diffusion process. However, DDGAN encountered scalability limitations when applied to large datasets. To address these limitations, we introduce a novel approach that tackles the problem by matching implicit and explicit factors. More specifically, our approach involves utilizing an implicit model to match the marginal distributions of noisy data and the explicit conditional distribution of the forward diffusion. This combination allows us to effectively match the joint denoising distributions. Unlike DDPM but similar to DDGAN, we do not enforce a parametric distribution for the reverse step, enabling us to take large steps during inference. Similar to the DDPM but unlike DDGAN, we take advantage of the exact form of the diffusion process. We demonstrate that our proposed method obtains comparable generative performance to diffusion-based models and vastly superior results to models with a small number of sampling steps.",
+      "meta_data": {
+        "arxiv_id": "2306.12511v3",
+        "authors": [
+          "Yanwu Xu",
+          "Mingming Gong",
+          "Shaoan Xie",
+          "Wei Wei",
+          "Matthias Grundmann",
+          "Kayhan Batmanghelich",
+          "Tingbo Hou"
+        ],
+        "published_date": "2023-06-21T18:49:22Z",
+        "pdf_url": "https://arxiv.org/pdf/2306.12511v3.pdf"
+      }
     },
     {
-      "title": "Multistep Distillation of Diffusion Models via Moment Matching"
+      "title": "Multistep Distillation of Diffusion Models via Moment Matching",
+      "abstract": "We present a new method for making diffusion models faster to sample. The method distills many-step diffusion models into few-step models by matching conditional expectations of the clean data given noisy data along the sampling trajectory. Our approach extends recently proposed one-step methods to the multi-step case, and provides a new perspective by interpreting these approaches in terms of moment matching. By using up to 8 sampling steps, we obtain distilled models that outperform not only their one-step versions but also their original many-step teacher models, obtaining new state-of-the-art results on the Imagenet dataset. We also show promising results on a large text-to-image model where we achieve fast generation of high resolution images directly in image space, without needing autoencoders or upsamplers.",
+      "meta_data": {
+        "arxiv_id": "2406.04103v1",
+        "authors": [
+          "Tim Salimans",
+          "Thomas Mensink",
+          "Jonathan Heek",
+          "Emiel Hoogeboom"
+        ],
+        "published_date": "2024-06-06T14:20:21Z",
+        "pdf_url": "https://arxiv.org/pdf/2406.04103v1.pdf"
+      }
     },
     {
-      "title": "Dimensionality-Varying Diffusion Process"
+      "title": "Dimensionality-Varying Diffusion Process",
+      "abstract": "Diffusion models, which learn to reverse a signal destruction process to generate new data, typically require the signal at each step to have the same dimension. We argue that, considering the spatial redundancy in image signals, there is no need to maintain a high dimensionality in the evolution process, especially in the early generation phase. To this end, we make a theoretical generalization of the forward diffusion process via signal decomposition. Concretely, we manage to decompose an image into multiple orthogonal components and control the attenuation of each component when perturbing the image. That way, along with the noise strength increasing, we are able to diminish those inconsequential components and thus use a lower-dimensional signal to represent the source, barely losing information. Such a reformulation allows to vary dimensions in both training and inference of diffusion models. Extensive experiments on a range of datasets suggest that our approach substantially reduces the computational cost and achieves on-par or even better synthesis performance compared to baseline methods. We also show that our strategy facilitates high-resolution image synthesis and improves FID of diffusion model trained on FFHQ at $1024\\times1024$ resolution from 52.40 to 10.46. Code and models will be made publicly available.",
+      "meta_data": {
+        "arxiv_id": "2211.16032v1",
+        "authors": [
+          "Han Zhang",
+          "Ruili Feng",
+          "Zhantao Yang",
+          "Lianghua Huang",
+          "Yu Liu",
+          "Yifei Zhang",
+          "Yujun Shen",
+          "Deli Zhao",
+          "Jingren Zhou",
+          "Fan Cheng"
+        ],
+        "published_date": "2022-11-29T09:05:55Z",
+        "pdf_url": "https://arxiv.org/pdf/2211.16032v1.pdf"
+      }
     },
     {
-      "title": "SnapFusion: Text-to-Image Diffusion Model on Mobile Devices within Two Seconds"
+      "title": "SnapFusion: Text-to-Image Diffusion Model on Mobile Devices within Two Seconds",
+      "abstract": "Text-to-image diffusion models can create stunning images from natural language descriptions that rival the work of professional artists and photographers. However, these models are large, with complex network architectures and tens of denoising iterations, making them computationally expensive and slow to run. As a result, high-end GPUs and cloud-based inference are required to run diffusion models at scale. This is costly and has privacy implications, especially when user data is sent to a third party. To overcome these challenges, we present a generic approach that, for the first time, unlocks running text-to-image diffusion models on mobile devices in less than $2$ seconds. We achieve so by introducing efficient network architecture and improving step distillation. Specifically, we propose an efficient UNet by identifying the redundancy of the original model and reducing the computation of the image decoder via data distillation. Further, we enhance the step distillation by exploring training strategies and introducing regularization from classifier-free guidance. Our extensive experiments on MS-COCO show that our model with $8$ denoising steps achieves better FID and CLIP scores than Stable Diffusion v$1.5$ with $50$ steps. Our work democratizes content creation by bringing powerful text-to-image diffusion models to the hands of users.",
+      "meta_data": {
+        "arxiv_id": "2306.00980v3",
+        "authors": [
+          "Yanyu Li",
+          "Huan Wang",
+          "Qing Jin",
+          "Ju Hu",
+          "Pavlo Chemerys",
+          "Yun Fu",
+          "Yanzhi Wang",
+          "Sergey Tulyakov",
+          "Jian Ren"
+        ],
+        "published_date": "2023-06-01T17:59:25Z",
+        "pdf_url": "https://arxiv.org/pdf/2306.00980v3.pdf"
+      }
     },
     {
-      "title": "Training-Free Adaptive Diffusion with Bounded Difference Approximation Strategy"
+      "title": "Training-Free Adaptive Diffusion with Bounded Difference Approximation Strategy",
+      "abstract": "Diffusion models have recently achieved great success in the synthesis of high-quality images and videos. However, the existing denoising techniques in diffusion models are commonly based on step-by-step noise predictions, which suffers from high computation cost, resulting in a prohibitive latency for interactive applications. In this paper, we propose AdaptiveDiffusion to relieve this bottleneck by adaptively reducing the noise prediction steps during the denoising process. Our method considers the potential of skipping as many noise prediction steps as possible while keeping the final denoised results identical to the original full-step ones. Specifically, the skipping strategy is guided by the third-order latent difference that indicates the stability between timesteps during the denoising process, which benefits the reusing of previous noise prediction results. Extensive experiments on image and video diffusion models demonstrate that our method can significantly speed up the denoising process while generating identical results to the original process, achieving up to an average 2~5x speedup without quality degradation.",
+      "meta_data": {
+        "arxiv_id": "2410.09873v1",
+        "authors": [
+          "Hancheng Ye",
+          "Jiakang Yuan",
+          "Renqiu Xia",
+          "Xiangchao Yan",
+          "Tao Chen",
+          "Junchi Yan",
+          "Botian Shi",
+          "Bo Zhang"
+        ],
+        "published_date": "2024-10-13T15:19:18Z",
+        "pdf_url": "https://arxiv.org/pdf/2410.09873v1.pdf"
+      }
     },
     {
-      "title": "A Simple Early Exiting Framework for Accelerated Sampling in Diffusion Models"
+      "title": "A Simple Early Exiting Framework for Accelerated Sampling in Diffusion Models",
+      "abstract": "Diffusion models have shown remarkable performance in generation problems over various domains including images, videos, text, and audio. A practical bottleneck of diffusion models is their sampling speed, due to the repeated evaluation of score estimation networks during the inference. In this work, we propose a novel framework capable of adaptively allocating compute required for the score estimation, thereby reducing the overall sampling time of diffusion models. We observe that the amount of computation required for the score estimation may vary along the time step for which the score is estimated. Based on this observation, we propose an early-exiting scheme, where we skip the subset of parameters in the score estimation network during the inference, based on a time-dependent exit schedule. Using the diffusion models for image synthesis, we show that our method could significantly improve the sampling throughput of the diffusion models without compromising image quality. Furthermore, we also demonstrate that our method seamlessly integrates with various types of solvers for faster sampling, capitalizing on their compatibility to enhance overall efficiency. The source code and our experiments are available at \\url{https://github.com/taehong-moon/ee-diffusion}",
+      "meta_data": {
+        "arxiv_id": "2408.05927v1",
+        "authors": [
+          "Taehong Moon",
+          "Moonseok Choi",
+          "EungGu Yun",
+          "Jongmin Yoon",
+          "Gayoung Lee",
+          "Jaewoong Cho",
+          "Juho Lee"
+        ],
+        "published_date": "2024-08-12T05:33:45Z",
+        "pdf_url": "https://arxiv.org/pdf/2408.05927v1.pdf"
+      }
     },
     {
-      "title": "Diffusion Models for Black-Box Optimization"
+      "title": "Diffusion Models for Black-Box Optimization",
+      "abstract": "The goal of offline black-box optimization (BBO) is to optimize an expensive black-box function using a fixed dataset of function evaluations. Prior works consider forward approaches that learn surrogates to the black-box function and inverse approaches that directly map function values to corresponding points in the input domain of the black-box function. These approaches are limited by the quality of the offline dataset and the difficulty in learning one-to-many mappings in high dimensions, respectively. We propose Denoising Diffusion Optimization Models (DDOM), a new inverse approach for offline black-box optimization based on diffusion models. Given an offline dataset, DDOM learns a conditional generative model over the domain of the black-box function conditioned on the function values. We investigate several design choices in DDOM, such as re-weighting the dataset to focus on high function values and the use of classifier-free guidance at test-time to enable generalization to function values that can even exceed the dataset maxima. Empirically, we conduct experiments on the Design-Bench benchmark and show that DDOM achieves results competitive with state-of-the-art baselines.",
+      "meta_data": {
+        "arxiv_id": "2306.07180v2",
+        "authors": [
+          "Siddarth Krishnamoorthy",
+          "Satvik Mehul Mashkaria",
+          "Aditya Grover"
+        ],
+        "published_date": "2023-06-12T15:26:44Z",
+        "pdf_url": "https://arxiv.org/pdf/2306.07180v2.pdf"
+      }
     },
     {
-      "title": "Diffusion Models as Plug-and-Play Priors"
+      "title": "Diffusion Models as Plug-and-Play Priors",
+      "abstract": "We consider the problem of inferring high-dimensional data $\\mathbf{x}$ in a model that consists of a prior $p(\\mathbf{x})$ and an auxiliary differentiable constraint $c(\\mathbf{x},\\mathbf{y})$ on $x$ given some additional information $\\mathbf{y}$. In this paper, the prior is an independently trained denoising diffusion generative model. The auxiliary constraint is expected to have a differentiable form, but can come from diverse sources. The possibility of such inference turns diffusion models into plug-and-play modules, thereby allowing a range of potential applications in adapting models to new domains and tasks, such as conditional generation or image segmentation. The structure of diffusion models allows us to perform approximate inference by iterating differentiation through the fixed denoising network enriched with different amounts of noise at each step. Considering many noised versions of $\\mathbf{x}$ in evaluation of its fitness is a novel search mechanism that may lead to new algorithms for solving combinatorial optimization problems.",
+      "meta_data": {
+        "arxiv_id": "2206.09012v3",
+        "authors": [
+          "Alexandros Graikos",
+          "Nikolay Malkin",
+          "Nebojsa Jojic",
+          "Dimitris Samaras"
+        ],
+        "published_date": "2022-06-17T21:11:36Z",
+        "pdf_url": "https://arxiv.org/pdf/2206.09012v3.pdf"
+      }
     },
     {
-      "title": "On Analyzing Generative and Denoising Capabilities of Diffusion-based Deep Generative Models"
+      "title": "On Analyzing Generative and Denoising Capabilities of Diffusion-based Deep Generative Models",
+      "abstract": "Diffusion-based Deep Generative Models (DDGMs) offer state-of-the-art performance in generative modeling. Their main strength comes from their unique setup in which a model (the backward diffusion process) is trained to reverse the forward diffusion process, which gradually adds noise to the input signal. Although DDGMs are well studied, it is still unclear how the small amount of noise is transformed during the backward diffusion process. Here, we focus on analyzing this problem to gain more insight into the behavior of DDGMs and their denoising and generative capabilities. We observe a fluid transition point that changes the functionality of the backward diffusion process from generating a (corrupted) image from noise to denoising the corrupted image to the final sample. Based on this observation, we postulate to divide a DDGM into two parts: a denoiser and a generator. The denoiser could be parameterized by a denoising auto-encoder, while the generator is a diffusion-based model with its own set of parameters. We experimentally validate our proposition, showing its pros and cons.",
+      "meta_data": {
+        "arxiv_id": "2206.00070v1",
+        "authors": [
+          "Kamil Deja",
+          "Anna Kuzina",
+          "Tomasz Trzciński",
+          "Jakub M. Tomczak"
+        ],
+        "published_date": "2022-05-31T19:29:27Z",
+        "pdf_url": "https://arxiv.org/pdf/2206.00070v1.pdf"
+      }
     },
     {
-      "title": "Training Diffusion Models with Reinforcement Learning"
+      "title": "Training Diffusion Models with Reinforcement Learning",
+      "abstract": "Diffusion models are a class of flexible generative models trained with an approximation to the log-likelihood objective. However, most use cases of diffusion models are not concerned with likelihoods, but instead with downstream objectives such as human-perceived image quality or drug effectiveness. In this paper, we investigate reinforcement learning methods for directly optimizing diffusion models for such objectives. We describe how posing denoising as a multi-step decision-making problem enables a class of policy gradient algorithms, which we refer to as denoising diffusion policy optimization (DDPO), that are more effective than alternative reward-weighted likelihood approaches. Empirically, DDPO is able to adapt text-to-image diffusion models to objectives that are difficult to express via prompting, such as image compressibility, and those derived from human feedback, such as aesthetic quality. Finally, we show that DDPO can improve prompt-image alignment using feedback from a vision-language model without the need for additional data collection or human annotation. The project's website can be found at http://rl-diffusion.github.io .",
+      "meta_data": {
+        "arxiv_id": "2305.13301v4",
+        "authors": [
+          "Kevin Black",
+          "Michael Janner",
+          "Yilun Du",
+          "Ilya Kostrikov",
+          "Sergey Levine"
+        ],
+        "published_date": "2023-05-22T17:57:41Z",
+        "pdf_url": "https://arxiv.org/pdf/2305.13301v4.pdf"
+      }
     },
     {
-      "title": "Unleashing the Denoising Capability of Diffusion Prior for Solving Inverse Problems"
+      "title": "Unleashing the Denoising Capability of Diffusion Prior for Solving Inverse Problems",
+      "abstract": "The recent emergence of diffusion models has significantly advanced the precision of learnable priors, presenting innovative avenues for addressing inverse problems. Since inverse problems inherently entail maximum a posteriori estimation, previous works have endeavored to integrate diffusion priors into the optimization frameworks. However, prevailing optimization-based inverse algorithms primarily exploit the prior information within the diffusion models while neglecting their denoising capability. To bridge this gap, this work leverages the diffusion process to reframe noisy inverse problems as a two-variable constrained optimization task by introducing an auxiliary optimization variable. By employing gradient truncation, the projection gradient descent method is efficiently utilized to solve the corresponding optimization problem. The proposed algorithm, termed ProjDiff, effectively harnesses the prior information and the denoising capability of a pre-trained diffusion model within the optimization framework. Extensive experiments on the image restoration tasks and source separation and partial generation tasks demonstrate that ProjDiff exhibits superior performance across various linear and nonlinear inverse problems, highlighting its potential for practical applications. Code is available at https://github.com/weigerzan/ProjDiff/.",
+      "meta_data": {
+        "arxiv_id": "2406.06959v2",
+        "authors": [
+          "Jiawei Zhang",
+          "Jiaxin Zhuang",
+          "Cheng Jin",
+          "Gen Li",
+          "Yuantao Gu"
+        ],
+        "published_date": "2024-06-11T05:35:18Z",
+        "pdf_url": "https://arxiv.org/pdf/2406.06959v2.pdf"
+      }
     },
     {
-      "title": "Data Distillation Can Be Like Vodka: Distilling More Times For Better Quality"
+      "title": "Data Distillation Can Be Like Vodka: Distilling More Times For Better Quality",
+      "abstract": "Dataset distillation aims to minimize the time and memory needed for training deep networks on large datasets, by creating a small set of synthetic images that has a similar generalization performance to that of the full dataset. However, current dataset distillation techniques fall short, showing a notable performance gap when compared to training on the original data. In this work, we are the first to argue that using just one synthetic subset for distillation will not yield optimal generalization performance. This is because the training dynamics of deep networks drastically change during the training. Hence, multiple synthetic subsets are required to capture the training dynamics at different phases of training. To address this issue, we propose Progressive Dataset Distillation (PDD). PDD synthesizes multiple small sets of synthetic images, each conditioned on the previous sets, and trains the model on the cumulative union of these subsets without requiring additional training time. Our extensive experiments show that PDD can effectively improve the performance of existing dataset distillation methods by up to 4.3%. In addition, our method for the first time enable generating considerably larger synthetic datasets.",
+      "meta_data": {
+        "arxiv_id": "2310.06982v1",
+        "authors": [
+          "Xuxi Chen",
+          "Yu Yang",
+          "Zhangyang Wang",
+          "Baharan Mirzasoleiman"
+        ],
+        "published_date": "2023-10-10T20:04:44Z",
+        "pdf_url": "https://arxiv.org/pdf/2310.06982v1.pdf"
+      }
     },
     {
-      "title": "On Distillation of Guided Diffusion Models"
+      "title": "On Distillation of Guided Diffusion Models",
+      "abstract": "Classifier-free guided diffusion models have recently been shown to be highly effective at high-resolution image generation, and they have been widely used in large-scale diffusion frameworks including DALLE-2, Stable Diffusion and Imagen. However, a downside of classifier-free guided diffusion models is that they are computationally expensive at inference time since they require evaluating two diffusion models, a class-conditional model and an unconditional model, tens to hundreds of times. To deal with this limitation, we propose an approach to distilling classifier-free guided diffusion models into models that are fast to sample from: Given a pre-trained classifier-free guided model, we first learn a single model to match the output of the combined conditional and unconditional models, and then we progressively distill that model to a diffusion model that requires much fewer sampling steps. For standard diffusion models trained on the pixel-space, our approach is able to generate images visually comparable to that of the original model using as few as 4 sampling steps on ImageNet 64x64 and CIFAR-10, achieving FID/IS scores comparable to that of the original model while being up to 256 times faster to sample from. For diffusion models trained on the latent-space (e.g., Stable Diffusion), our approach is able to generate high-fidelity images using as few as 1 to 4 denoising steps, accelerating inference by at least 10-fold compared to existing methods on ImageNet 256x256 and LAION datasets. We further demonstrate the effectiveness of our approach on text-guided image editing and inpainting, where our distilled model is able to generate high-quality results using as few as 2-4 denoising steps.",
+      "meta_data": {
+        "arxiv_id": "2210.03142v3",
+        "authors": [
+          "Chenlin Meng",
+          "Robin Rombach",
+          "Ruiqi Gao",
+          "Diederik P. Kingma",
+          "Stefano Ermon",
+          "Jonathan Ho",
+          "Tim Salimans"
+        ],
+        "published_date": "2022-10-06T18:03:56Z",
+        "pdf_url": "https://arxiv.org/pdf/2210.03142v3.pdf"
+      }
     },
     {
-      "title": "Plug-and-Play Diffusion Distillation"
+      "title": "Plug-and-Play Diffusion Distillation",
+      "abstract": "Diffusion models have shown tremendous results in image generation. However, due to the iterative nature of the diffusion process and its reliance on classifier-free guidance, inference times are slow. In this paper, we propose a new distillation approach for guided diffusion models in which an external lightweight guide model is trained while the original text-to-image model remains frozen. We show that our method reduces the inference computation of classifier-free guided latent-space diffusion models by almost half, and only requires 1\\% trainable parameters of the base model. Furthermore, once trained, our guide model can be applied to various fine-tuned, domain-specific versions of the base diffusion model without the need for additional training: this \"plug-and-play\" functionality drastically improves inference computation while maintaining the visual fidelity of generated images. Empirically, we show that our approach is able to produce visually appealing results and achieve a comparable FID score to the teacher with as few as 8 to 16 steps.",
+      "meta_data": {
+        "arxiv_id": "2406.01954v2",
+        "authors": [
+          "Yi-Ting Hsiao",
+          "Siavash Khodadadeh",
+          "Kevin Duarte",
+          "Wei-An Lin",
+          "Hui Qu",
+          "Mingi Kwon",
+          "Ratheesh Kalarot"
+        ],
+        "published_date": "2024-06-04T04:22:47Z",
+        "pdf_url": "https://arxiv.org/pdf/2406.01954v2.pdf"
+      }
     },
     {
-      "title": "PaGoDA: Progressive Growing of a One-Step Generator from a Low-Resolution Diffusion Teacher"
+      "title": "PaGoDA: Progressive Growing of a One-Step Generator from a Low-Resolution Diffusion Teacher",
+      "abstract": "The diffusion model performs remarkable in generating high-dimensional content but is computationally intensive, especially during training. We propose Progressive Growing of Diffusion Autoencoder (PaGoDA), a novel pipeline that reduces the training costs through three stages: training diffusion on downsampled data, distilling the pretrained diffusion, and progressive super-resolution. With the proposed pipeline, PaGoDA achieves a $64\\times$ reduced cost in training its diffusion model on 8x downsampled data; while at the inference, with the single-step, it performs state-of-the-art on ImageNet across all resolutions from 64x64 to 512x512, and text-to-image. PaGoDA's pipeline can be applied directly in the latent space, adding compression alongside the pre-trained autoencoder in Latent Diffusion Models (e.g., Stable Diffusion). The code is available at https://github.com/sony/pagoda.",
+      "meta_data": {
+        "arxiv_id": "2405.14822v2",
+        "authors": [
+          "Dongjun Kim",
+          "Chieh-Hsin Lai",
+          "Wei-Hsiang Liao",
+          "Yuhta Takida",
+          "Naoki Murata",
+          "Toshimitsu Uesaka",
+          "Yuki Mitsufuji",
+          "Stefano Ermon"
+        ],
+        "published_date": "2024-05-23T17:39:09Z",
+        "pdf_url": "https://arxiv.org/pdf/2405.14822v2.pdf"
+      }
     },
     {
-      "title": "Multistep Distillation of Diffusion Models via Moment Matching"
+      "title": "Multistep Distillation of Diffusion Models via Moment Matching",
+      "abstract": "We present a new method for making diffusion models faster to sample. The method distills many-step diffusion models into few-step models by matching conditional expectations of the clean data given noisy data along the sampling trajectory. Our approach extends recently proposed one-step methods to the multi-step case, and provides a new perspective by interpreting these approaches in terms of moment matching. By using up to 8 sampling steps, we obtain distilled models that outperform not only their one-step versions but also their original many-step teacher models, obtaining new state-of-the-art results on the Imagenet dataset. We also show promising results on a large text-to-image model where we achieve fast generation of high resolution images directly in image space, without needing autoencoders or upsamplers.",
+      "meta_data": {
+        "arxiv_id": "2406.04103v1",
+        "authors": [
+          "Tim Salimans",
+          "Thomas Mensink",
+          "Jonathan Heek",
+          "Emiel Hoogeboom"
+        ],
+        "published_date": "2024-06-06T14:20:21Z",
+        "pdf_url": "https://arxiv.org/pdf/2406.04103v1.pdf"
+      }
     }
   ]
 }
