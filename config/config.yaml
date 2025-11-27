@@ -1,0 +1,75 @@
+# -----------------------------------------------------------------------------
+# Root Hydra configuration (shared by all runs)                                
+# -----------------------------------------------------------------------------
+
+defaults:
+  - _self_
+  - run: ???                 # individual experiment lives in config/run/<id>.yaml
+
+# -----------------------------------------------------------------------------
+results_dir: "results"
+mode: full                   # trial / full
+
+# -----------------------------------------------------------------------------
+wandb:
+  entity: gengaru617-personal
+  project: "2025-11-17"
+  mode: online               # auto-patched in trial mode
+
+# -----------------------------------------------------------------------------
+training:
+  epochs: 10
+  steps_per_epoch: 1000      # for streaming datasets
+  batch_size: 32
+  learning_rate: 1.0e-4
+  betas: [0.9, 0.999]
+  weight_decay: 0.0
+  gradient_clip_norm: 1.0
+  mixed_precision: false
+  num_workers: 2
+  loss_weights:
+    lambda_R: 0.1
+    lambda_H: 0.05
+  s_max: 4                   # max solver rounds in HiCES
+  seed: 42
+
+# -----------------------------------------------------------------------------
+hardware:
+  device: auto               # resolved at runtime
+
+# -----------------------------------------------------------------------------
+logging:
+  log_interval: 1            # per-batch WandB log frequency
+
+# -----------------------------------------------------------------------------
+optuna:
+  n_trials: 0
+  direction: minimize
+  search_space: {}
+
+# -----------------------------------------------------------------------------
+dataset:
+  name: ImageNet64
+  source: hf://gitpull/Imagenet_64x64
+  resolution: 64
+  splits:
+    train: train
+    val: val
+  augmentations:
+    random_crop: false
+    horizontal_flip: false
+
+# -----------------------------------------------------------------------------
+model:
+  base_channels: 64
+  channel_mult: [1, 2, 2, 4]
+  img_size: 64
+  risk_certificate:
+    tau_max: 1.0
+  risk_head:
+    out_channels: 1
+
+# -----------------------------------------------------------------------------
+# NOTE: individual run configs live in config/run/<id>.yaml and are merged by
+#       specifying `run=<id>` on the command line.                             
+# -----------------------------------------------------------------------------

@@ -1,0 +1,77 @@
+run_id: proposed-iter1-ImageNet64
+method: HiCES
+model:
+  name: unet-latent-sd15
+  img_size: 64
+  base_channels: 320
+  channel_mult: [1, 2, 4, 4]
+  num_res_blocks: 2
+  attention_resolutions: [8, 16]
+  risk_certificate:
+    quadtree_levels: [64, 32, 16, 8]
+    tau_max: 1.0          # default, tuned by Optuna
+  risk_head:
+    type: conv1x1
+    in_channels: 640      # penultimate feature-map channels
+    out_channels: 1       # per-leaf log-risk prediction
+training:
+  epochs: 300
+  batch_size: 128
+  optimizer: adamw
+  learning_rate: 2.0e-4   # tuned by Optuna
+  betas: [0.9, 0.999]
+  weight_decay: 0.01
+  scheduler: cosine
+  warmup_steps: 1000
+  loss_weights:
+    lambda_R: 0.1         # tuned by Optuna
+    lambda_H: 0.05        # tuned by Optuna
+  s_max: 4                # maximum solver rounds, tuned by Optuna
+  gradient_clip_norm: 1.0
+  mixed_precision: true
+  checkpoint_every: 10000
+  num_workers: 8
+  seed: 42
+dataset:
+  name: ImageNet64
+  source: hf://gitpull/Imagenet_64x64
+  resolution: 64
+  splits:
+    train: train
+    val: val
+  augmentations:
+    random_crop: true
+    horizontal_flip: true
+    repeat: 1
+optuna:
+  n_trials: 30
+  direction: minimize        # primary metric FID
+  search_space:
+    learning_rate:
+      type: loguniform
+      low: 1.0e-5
+      high: 5.0e-4
+    lambda_R:
+      type: uniform
+      low: 0.05
+      high: 0.2
+    lambda_H:
+      type: uniform
+      low: 0.01
+      high: 0.1
+    tau_max:
+      type: uniform
+      low: 0.5
+      high: 2.0
+    s_max:
+      type: int
+      low: 3
+      high: 5
+hardware:
+  device: cpu
+  ram_limit_mb: 500
+logging:
+  project: HiCES_ImageNet64
+  experiment_name: proposed-iter1
+  log_interval: 100
+  save_artifacts: true
