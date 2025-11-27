@@ -123,8 +123,8 @@ class HiCESUNet(nn.Module):
         h = self.u3(h, target_size=x2.shape[2:])
         if h.shape[2:] == x2.shape[2:]:
             h = h + x2
-        risk_feats = h
         h = self.u2(h, target_size=x1.shape[2:])
+        risk_feats = h
         if h.shape[2:] == x1.shape[2:]:
             h = h + x1
         h = self.u1(h, target_size=x0.shape[2:])
