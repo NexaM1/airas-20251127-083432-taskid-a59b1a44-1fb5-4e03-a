@@ -38,12 +38,26 @@ def _transform_pipeline(cfg):
 
 def _load_imagenet64(cfg, split: str):
     hf_path = cfg.dataset.source.replace("hf://", "")
-    ds = load_dataset(
-        hf_path,
-        split=cfg.dataset.splits[split],
-        streaming=True,
-        cache_dir=".cache/",
-    )
+
+    # Try to load the requested split, fallback to train if not available
+    try:
+        split_name = cfg.dataset.splits[split]
+        ds = load_dataset(
+            hf_path,
+            split=split_name,
+            streaming=True,
+            cache_dir=".cache/",
+        )
+    except ValueError:
+        # If the requested split doesn't exist, use train split for both
+        print(f"Warning: Split '{cfg.dataset.splits[split]}' not available, using 'train' split instead")
+        ds = load_dataset(
+            hf_path,
+            split="train",
+            streaming=True,
+            cache_dir=".cache/",
+        )
+
     tfm = _transform_pipeline(cfg)
 
     class _Wrap(torch.utils.data.IterableDataset):
