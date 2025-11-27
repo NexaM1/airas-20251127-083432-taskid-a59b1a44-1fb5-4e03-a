@@ -6,5 +6,82 @@
     "diffusion step reduction",
     "denoising diffusion optimization",
     "progressive distillation diffusion"
+  ],
+  "research_study_list": [
+    {
+      "title": "Faster Diffusion: Rethinking the Role of the Encoder for Diffusion Model Inference"
+    },
+    {
+      "title": "Leveraging Early-Stage Robustness in Diffusion Models for Efficient and High-Quality Image Synthesis"
+    },
+    {
+      "title": "Post-Training Quantization on Diffusion Models"
+    },
+    {
+      "title": "A Simple Early Exiting Framework for Accelerated Sampling in Diffusion Models"
+    },
+    {
+      "title": "Multistep Distillation of Diffusion Models via Moment Matching"
+    },
+    {
+      "title": "Multistep Distillation of Diffusion Models via Moment Matching"
+    },
+    {
+      "title": "A Simple Early Exiting Framework for Accelerated Sampling in Diffusion Models"
+    },
+    {
+      "title": "Reverse Transition Kernel: A Flexible Framework to Accelerate Diffusion Inference"
+    },
+    {
+      "title": "Fast ODE-based Sampling for Diffusion Models in Around 5 Steps"
+    },
+    {
+      "title": "Semi-Implicit Denoising Diffusion Models (SIDDMs)"
+    },
+    {
+      "title": "Multistep Distillation of Diffusion Models via Moment Matching"
+    },
+    {
+      "title": "Dimensionality-Varying Diffusion Process"
+    },
+    {
+      "title": "SnapFusion: Text-to-Image Diffusion Model on Mobile Devices within Two Seconds"
+    },
+    {
+      "title": "Training-Free Adaptive Diffusion with Bounded Difference Approximation Strategy"
+    },
+    {
+      "title": "A Simple Early Exiting Framework for Accelerated Sampling in Diffusion Models"
+    },
+    {
+      "title": "Diffusion Models for Black-Box Optimization"
+    },
+    {
+      "title": "Diffusion Models as Plug-and-Play Priors"
+    },
+    {
+      "title": "On Analyzing Generative and Denoising Capabilities of Diffusion-based Deep Generative Models"
+    },
+    {
+      "title": "Training Diffusion Models with Reinforcement Learning"
+    },
+    {
+      "title": "Unleashing the Denoising Capability of Diffusion Prior for Solving Inverse Problems"
+    },
+    {
+      "title": "Data Distillation Can Be Like Vodka: Distilling More Times For Better Quality"
+    },
+    {
+      "title": "On Distillation of Guided Diffusion Models"
+    },
+    {
+      "title": "Plug-and-Play Diffusion Distillation"
+    },
+    {
+      "title": "PaGoDA: Progressive Growing of a One-Step Generator from a Low-Resolution Diffusion Teacher"
+    },
+    {
+      "title": "Multistep Distillation of Diffusion Models via Moment Matching"
+    }
   ]
 }
